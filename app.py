@@ -4,6 +4,8 @@ import MySQLdb as my
 import json
 from get_movie import*
 
+"""This File uses MySQL ONLY"""
+
 app = Flask(__name__)
 db = my.connect("localhost","root","themenwhopause","login" )
 app.secret_key='123456'
