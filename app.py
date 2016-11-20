@@ -1,7 +1,7 @@
 from flask import Flask,flash,render_template, json, request,redirect,url_for,jsonify
 from werkzeug import generate_password_hash, check_password_hash
 import MySQLdb as my 
-import json
+import json,yaml
 from get_movie import*
 
 app = Flask(__name__)
@@ -56,10 +56,18 @@ def results():
 		#print result
 	try:
 		movie_info = get_movie(result['Title'].encode('utf-8'))
-		print movie_info
+		#print movie_info
 		return render_template('results.html',dict = movie_info)
 	except:
 		flash("Invalid, try again!")
+
+@app.route('/senti')
+def senti():
+	f = open('movie.json','r').read()
+	parsed_json = yaml.safe_load(f)
+	senti_dict = senti_analysis(parsed_json['Title'])
+	#print senti_dict
+	return render_template('senti.html',list =senti_dict['document_tone']['tone_categories'])
 
 #______________________________________________________#
 @app.route('/logout')

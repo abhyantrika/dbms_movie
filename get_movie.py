@@ -29,6 +29,15 @@ def get_movie(movie_name):
 			f.write(json.dumps(page))	
 		return insert_to_mongo(movie_name)
 
+def senti_analysis(movie_name):
+	from watson_developer_cloud import ToneAnalyzerV3
+	tone_analyzer = ToneAnalyzerV3(
+	username='ba6cd88a-0af9-4a2d-b9e7-f0a4ff8c50c0',
+	password='0cKi5z7W73sW',
+	version='2016-05-19')
+	movie_in_db = rec.find_one({"Title":{'$regex':movie_name,'$options':"$i"}})
+	return tone_analyzer.tone(text=movie_in_db['Plot'])
+
 def insert_to_mongo(movie_name):
 	f = open('movie.json','r').read()		#All json files used are temporary!	
 	parsed_json = yaml.safe_load(f)

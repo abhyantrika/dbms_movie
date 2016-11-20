@@ -1,1 +1,0 @@
-ImmutableMultiDict([('username', u'shishirarmaiya'), ('password', u's'), ('email', u'shishira.maiya96@gmail.com')])
