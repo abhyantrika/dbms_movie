@@ -2,3 +2,4 @@ Flask==0.11.1
 pymongo==3.3.1
 Werkzeug==0.11.10
 PyYAML==3.12
+watson_developer_cloud

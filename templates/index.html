@@ -1,42 +1,43 @@
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Critic's corner</title>
-
-   
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-   
-  </head>
-
-  <body>
-
-    <div class="container">
-      <div class="header">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation">  <a href="/signin_help"> Sign In </a>           </li>
- 	    <li role="presentation">    <a href="/signup_help"> Sign Up </a>   </li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Critic's Corner </h3>
+<html><head>
+    <title>Critic's Corner</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="cover">
+      <div class="navbar">
+        <div class="container">
+          <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand text-inverse" href="#">
+              <span><b>Critic</b>'s Corner <img src="http://img.lum.dolimg.com/v1/images/open-uri20150422-20810-1knd2un_0cf74357.jpeg" style="height: 60px; border-radius: 30px; border-style: none; border-width: 1px;"></span>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right"></ul>
+          </div>
+        </div>
       </div>
-
-      <div class="jumbotron">
-        <h1>Database of Epic Movies</h1>
-        <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="/signup_help" role="button">Sign up today</a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
+      <div class="cover-image" style="background-image : url('https://www.fandomfollowing.com/wp-content/uploads/2016/11/89197bbb-8d92-4bc1-955b-a6e9b7c15b3d.jpg')"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-6 col-md-6 text-center">
+            <h1 class="text-muted">Movies</h1>
+            <p class="lead text-inverse">No one will tell you the plot, you have to work it out all yourself from
+              the clues.</p>
+            <br>
+            <br>
+            <a class="btn btn-lg btn-primary" href="/signin"><span class="fa fa-arrow-circle-right"></span> Sign in</a>
+            <a class="btn btn-lg btn-success" href="/signup"><span class="fa fa-sign-in"></span> Sign up</a>
+          </div>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  
 
+</body></html>
