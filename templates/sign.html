@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="cover-image" style="background-image: url(https://lalitvc.files.wordpress.com/2015/05/locking.jpg);"></div>
-      <div class="container">
+      <div id="SignUpBox" class="container">
         <div class="row" draggable="true">
           <div class="col-md-4">
             <form class="form-horizontal" role="form" action="/main" method="POST">
@@ -38,10 +38,10 @@
                   <label for="username" class="control-label text-inverse">Username:</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="true" value="{{username}}">
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="true">
                 </div>
               </div>
-              <div id="Email" class="form-group">
+              <div class="form-group">
                 <div class="col-sm-3">
                   <label for="email" class="control-label text-inverse">Email:</label>
                 </div>
@@ -57,23 +57,49 @@
                   <input type="password" class="form-control" id="password" placeholder="Password" name="password" required="true">
                 </div>
               </div>
-              <div id="SignUp" class="form-group">
+              <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                   <button type="submit" class="btn btn-lg btn-success">Sign up</button>
                 </div>
               </div>
-              <div id="SignIn" class="form-group">
+            </form>
+            <div style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Already have an account?
+              <a class="text-inverse" onclick="$('#UsernameUnavailable').hide(); $('#SignUpBox').hide(); $('#SignInBox').show();"><b>Sign in</b></a>
+            </div>
+            <div class="alert alert-warning" id="UsernameUnavailable" style="display: none;"><strong>Invalid username!</strong> Username already in use</div>
+          </div>
+        </div>
+      </div>
+      <div id="SignInBox" class="container">
+        <div class="row" draggable="true">
+          <div class="col-md-4">
+            <form class="form-horizontal" role="form" action="/main" method="POST">
+              <div class="form-group">
+                <div class="col-sm-3">
+                  <label for="username" class="control-label text-inverse">Username:</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="true" value="{{username}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-3">
+                  <label for="password" class="control-label text-inverse">Password:</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" id="password" placeholder="Password" name="password" required="true">
+                </div>
+              </div>
+              <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                   <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
                 </div>
               </div>
             </form>
-            <div id="SignUpToIn" style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Already have an account?
-              <a class="text-inverse" onclick="$('#Email').hide(); $('#SignUp').hide(); $('#SignUpToIn').hide(); $('#SignIn').show(); $('#SignInToUp').show();"><b>Sign in</b></a>
+            <div style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Don't have an account?
+              <a class="text-inverse" onclick="$('#InvalidPassword').hide(); $('#SignInBox').hide(); $('#SignUpBox').show();"><b>Sign up</b></a>
             </div>
-            <div id="SignInToUp" style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Don't have an account?
-              <a class="text-inverse" onclick="$('#SignIn').hide(); $('#SignInToUp').hide(); $('#Email').show(); $('#SignUp').show(); $('#SignUpToIn').show();"><b>Sign up</b></a>
-            </div>
+            <div class="alert alert-danger" id="InvalidPassword" style="display: none;"><strong>Invalid password!</strong> Please try again</div>
           </div>
         </div>
       </div>
@@ -81,19 +107,25 @@
   </body>
   {% if type == 1 %}
     <script type="text/javascript">
-      $('#SignIn').hide();
-      $('#SignInToUp').hide();
-      $('#Email').show();
-      $('#SignUp').show();
-      $('#SignUpToIn').show();
+      $('#SignInBox').hide();
+      $('#SignUpBox').show();
+      $('#UsernameUnavailable').hide();
     </script>
+    {% if email %}
+      <script type="text/javascript">
+        $('#UsernameUnavailable').show();
+      </script>
+    {% endif %}
   {% else %}
     <script type="text/javascript">
-      $('#Email').hide();
-      $('#SignUp').hide();
-      $('#SignUpToIn').hide();
-      $('#SignIn').show();
-      $('#SignInToUp').show();
+      $('#SignUpBox').hide();
+      $('#SignInBox').show();
+      $('#InvalidPassword').hide();
     </script>
+    {% if username %}
+      <script type="text/javascript">
+        $('#InvalidPassword').show();
+      </script>
+    {% endif %}
   {% endif %}
 </html>
