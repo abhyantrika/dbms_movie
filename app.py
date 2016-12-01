@@ -30,7 +30,6 @@ def signup_help():
     global USN, EMAIL
     email = EMAIL
     USN = EMAIL = ''
-    print "signup", USN, EMAIL
     return render_template('sign.html', type=1, email=email, username='')
 
 
@@ -39,18 +38,16 @@ def signin_help():
     global USN, EMAIL
     username = USN
     USN = EMAIL = ''
-    print "signin", USN, EMAIL
     return render_template('sign.html', type=2, email='', username=username)
 
 
 @app.route('/main', methods=['POST', 'GET'])
 def sign_up_in():
     global EMAIL, USN
-    print "main"
     if request.method == 'POST':
         result = request.form
-        print "Result:", result
-    if result['email']:                           # If email present : it means it is sign up, else sign in!
+        print result
+    if 'email' in result:                             # If email present : it means it is sign up, else sign in!
         dump_to_json('signup.json', result)         # Temporarily write to json, the db funcs will use this to insert or validate.
         if not update_db():
             EMAIL = result['email']
@@ -68,7 +65,6 @@ def sign_up_in():
 
 @app.route('/movie')
 def movie():
-    print "movie"
     return render_template('movie.html')
 
 # ___________________________________________________________ #
@@ -77,7 +73,6 @@ def movie():
 
 @app.route('/results', methods=['POST', 'GET'])
 def results():
-    print "results"
     if request.method == 'POST':    
         result = request.form
     try:
