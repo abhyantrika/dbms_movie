@@ -19,7 +19,6 @@ EMAIL = ''
 
 @app.route('/')
 def home():
-    print "home"
     return render_template('index.html', addr=home_address)
 # ___________________________________________________ #
 """Sign up and Sign in functions"""
@@ -46,7 +45,6 @@ def sign_up_in():
     global EMAIL, USN
     if request.method == 'POST':
         result = request.form
-        print result
     if 'email' in result:                             # If email present : it means it is sign up, else sign in!
         dump_to_json('signup.json', result)         # Temporarily write to json, the db funcs will use this to insert or validate.
         if not update_db():
