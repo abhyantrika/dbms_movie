@@ -5,15 +5,20 @@
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
         <link href="../static/css/signup.css" rel="stylesheet">
+        <script src="../static/js/jquery-1.11.2.js"></script>
+        <script src="../static/js/signUp.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <h2>Sorry wrong Password!</h2>
-                        <a href = "/signin">Go Back to sign in<br></a>
-                        <a href = "/">Go to Home screen!</a>	
+                        <h2>The main Page</h2>
+                        <a href = "/">Logout</a>
+                        <form action = "/results" method = "POST">
+                            <p>Movie Title <input type = "text" name = "Title" /></p>
+                            <p><input type = "submit" value = "submit" /></p>
+                        </form>
                     </ul>
                 </nav>
             </div>

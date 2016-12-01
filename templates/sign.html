@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="cover">
+      <div class="navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand text-inverse" href="#">
+              <span><img src="http://img.lum.dolimg.com/v1/images/open-uri20150422-20810-1knd2un_0cf74357.jpeg" style="height: 60px; border-radius: 30px; border-style: none; border-width: 1px;"> <b>Critic</b>'s Corner</span>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-brand navbar-right">
+              <li>
+                <a href="/" class="text-inverse"><span class="fa fa-home"></span> Home</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cover-image" style="background-image: url(https://lalitvc.files.wordpress.com/2015/05/locking.jpg);"></div>
+      <div class="container">
+        <div class="row" draggable="true">
+          <div class="col-md-4">
+            <form class="form-horizontal" role="form" action="/main" method="POST">
+              <div class="form-group">
+                <div class="col-sm-3">
+                  <label for="username" class="control-label text-inverse">Username:</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="true" value="{{username}}">
+                </div>
+              </div>
+              <div id="Email" class="form-group">
+                <div class="col-sm-3">
+                  <label for="email" class="control-label text-inverse">Email:</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="{{email}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-3">
+                  <label for="password" class="control-label text-inverse">Password:</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" id="password" placeholder="Password" name="password" required="true">
+                </div>
+              </div>
+              <div id="SignUp" class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <button type="submit" class="btn btn-lg btn-success">Sign up</button>
+                </div>
+              </div>
+              <div id="SignIn" class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
+                </div>
+              </div>
+            </form>
+            <div id="SignUpToIn" style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Already have an account?
+              <a class="text-inverse" onclick="$('#Email').hide(); $('#SignUp').hide(); $('#SignUpToIn').hide(); $('#SignIn').show(); $('#SignInToUp').show();"><b>Sign in</b></a>
+            </div>
+            <div id="SignInToUp" style="border-top: 1px solid#FFFFFF; padding-top:15px; font-size:100%" class="text-inverse lead">Don't have an account?
+              <a class="text-inverse" onclick="$('#SignIn').hide(); $('#SignInToUp').hide(); $('#Email').show(); $('#SignUp').show(); $('#SignUpToIn').show();"><b>Sign up</b></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  {% if type == 1 %}
+    <script type="text/javascript">
+      $('#SignIn').hide();
+      $('#SignInToUp').hide();
+      $('#Email').show();
+      $('#SignUp').show();
+      $('#SignUpToIn').show();
+    </script>
+  {% else %}
+    <script type="text/javascript">
+      $('#Email').hide();
+      $('#SignUp').hide();
+      $('#SignUpToIn').hide();
+      $('#SignIn').show();
+      $('#SignInToUp').show();
+    </script>
+  {% endif %}
+</html>

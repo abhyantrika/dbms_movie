@@ -1,43 +1,38 @@
 <html lang="en">
-
-<head>
-  <title>Awesome movies database</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
-
-<body>
-  <div class="jumbotron">
-    <div class="container">
-      <p align="right">
-        
-<a href ="http://localhost:5000">  <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat-2/256/switch-turn-off-icon.png" alt="Go Back" style="max-width:5%;height:auto"> </a> </p>
-      
-	<center> <h1>Your Results <small>  </small> </h1></center>
-	<br>
-		{% for i in dict %}
-			{%if i not in ["_id","Response","Runtime","imdbID","imdbVotes","Type"] %}		
-				{% if i == "Poster"  %}
-					<center> <img src = "{{dict[i]}}" alt = "Poster"> </center>
-				{% else %}
-					<center> <b> {{i}} </b>  <i> {{dict[i]}} </i> </center>
-				{% endif %}
-			{% endif %}
-{%endfor%}
-</div>
-
-      </center>
-    </div>
-  </div>
-	 <p> <center> <a class="btn btn-lg btn-success" href="/senti" role="button">Click Here for Senti Analysis on Plot!</a> </center> </p>
-	<center> <h1> Thank You! </h1> </center>
+    <head>
+        <title>Awesome movies database</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <div class="container">
+                <p align="right">
+                    <a href ="/">
+                        <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat-2/256/switch-turn-off-icon.png" alt="Go Back" style="max-width:5%;height:auto">
+                    </a>
+                </p>
+                <center><h1>Your Results</h1></center>
+                <br>
+                {% for i in dict %}
+                    {% if i not in ["_id","Response","Runtime","imdbID","imdbVotes","Type"] %}		
+                        {% if i == "Poster"  %}
+                            <center><img src="{{dict[i]}}" alt="Poster"></center>
+                        {% else %}
+                            <center><b>{{i}}</b> <i>{{dict[i]}}</i></center>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                <p>
+                    <center>
+                        <a class="btn btn-lg btn-success" href="/senti" role="button">Click Here for Senti Analysis on Plot!</a>
+                    </center>
+                </p>
+                <center><h1>Thank You!</h1></center>
+            </div>
         </div>
-      </div>
-      <div class="col-sm-2"></div>
-    </div>
-
-  </body>
+    </body>
+</html>
