@@ -1,4 +1,4 @@
-<html lang="en">
+<!-- <html lang="en">
     <head>
         <title>Awesome movies database</title>
         <meta charset="utf-8">
@@ -27,4 +27,78 @@
             <center><h1>Thank You!</h1></center>
         </div>
     </body>
+</html>  -->
+
+<!DOCTYPE html><html lang="en">
+<head>   <meta charset="utf-8" />   
+
+<title>Sentimental Analysis </title>      <!-- import plugin script -->  
+</head>
+<body bgcolor = "lightgray">
+
+		<script src='static/Chart.min.js'></script>   
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ <div class="jumbotron">
+            <div class="container">
+	
+<div id = "name" align="center">
+<h1> Sentimental Analysis of Plot </h1><!-- bar chart canvas element -->
+	<canvas id="chart" width="600" height="400"></canvas>
+</div>
+<script>
+   // bar chart data
+   var barData = {
+   labels : [{% for item in list[0]['tones'] %}
+                  "{{item['tone_name']}}",
+              {% endfor %}],
+   datasets : [
+      {
+            fillColor: "rgba(61,207,55,0.66)",
+            strokeColor: "rgba(121,117,15,1)",
+            pointColor: "rgba(131,117,215,1)",
+         data : [{% for item in list[0]['tones'] %}
+                      {{item['score']}},
+                    {% endfor %}]
+      }
+      ]
+   }
+ 
+   // get bar chart canvas
+   var mychart = document.getElementById("chart").getContext("2d");
+ 
+   steps = 0.1
+   max = 1
+   // draw bar chart
+   new Chart(mychart).Bar(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+
+
+   });
+ 
+</script>
+<style>
+#name{
+ 
+}
+#chart{
+background-color:lightblue;
+opacity:0.7
+}
+</style>
+	</div>
+	</div>
+
+</body>
 </html>
+

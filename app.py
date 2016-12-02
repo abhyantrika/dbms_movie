@@ -69,7 +69,7 @@ def sign_up_in():
 @app.route('/movie')
 def movie():
     print "movie"
-    return render_template('movie.html')
+    return render_template('main.html')
 
 # ___________________________________________________________ #
 """Results from api: Use get_movie.py"""
