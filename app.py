@@ -19,7 +19,6 @@ EMAIL = ''
 
 @app.route('/')
 def home():
-    print "home"
     return render_template('index.html', addr=home_address)
 # ___________________________________________________ #
 """Sign up and Sign in functions"""
@@ -30,7 +29,6 @@ def signup_help():
     global USN, EMAIL
     email = EMAIL
     USN = EMAIL = ''
-    print "signup", USN, EMAIL
     return render_template('sign.html', type=1, email=email, username='')
 
 
@@ -39,18 +37,15 @@ def signin_help():
     global USN, EMAIL
     username = USN
     USN = EMAIL = ''
-    print "signin", USN, EMAIL
     return render_template('sign.html', type=2, email='', username=username)
 
 
 @app.route('/main', methods=['POST', 'GET'])
 def sign_up_in():
     global EMAIL, USN
-    print "main"
     if request.method == 'POST':
         result = request.form
-        print "Result:", result
-    if result['email']:                           # If email present : it means it is sign up, else sign in!
+    if 'email' in result:                             # If email present : it means it is sign up, else sign in!
         dump_to_json('signup.json', result)         # Temporarily write to json, the db funcs will use this to insert or validate.
         if not update_db():
             EMAIL = result['email']
@@ -68,8 +63,12 @@ def sign_up_in():
 
 @app.route('/movie')
 def movie():
-    print "movie"
-    return render_template('main.html')
+    return render_template('main.html', found=True)
+
+
+@app.route('/movieilla')
+def movie_illa():
+    return render_template('main.html', found=False)
 
 # ___________________________________________________________ #
 """Results from api: Use get_movie.py"""
@@ -77,15 +76,16 @@ def movie():
 
 @app.route('/results', methods=['POST', 'GET'])
 def results():
-    print "results"
     if request.method == 'POST':    
         result = request.form
     try:
         movie_info = get_movie(result['Title'].encode('utf-8'))
+        if movie_info['Response'] == False:
+            return redirect('/movieilla')
         return render_template('results.html', dict=movie_info)
     except:
         flash("Invalid, try again!")
-        return redirect('/movie')
+        return redirect('/movieilla')
 
 
 @app.route('/senti')
@@ -106,7 +106,7 @@ def logout():
     """
     dump_to_json("signin.json", {})
     dump_to_json("signup.json", {})
-    return home()
+    return redirect('/')
     
 # _______________________________________________________ #
 """Database stuff"""
