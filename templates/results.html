@@ -1,38 +1,100 @@
-<html lang="en">
-    <head>
-        <title>Awesome movies database</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="jumbotron">
-            <div class="container">
-                <p align="right">
-                    <a href ="/">
-                        <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat-2/256/switch-turn-off-icon.png" alt="Go Back" style="max-width:5%;height:auto">
-                    </a>
-                </p>
-                <center><h1>Your Results</h1></center>
-                <br>
-                {% for i in dict %}
-                    {% if i not in ["_id","Response","Runtime","imdbID","imdbVotes","Type"] %}		
-                        {% if i == "Poster"  %}
-                            <center><img src="{{dict[i]}}" alt="Poster"></center>
-                        {% else %}
-                            <center><b>{{i}}</b> <i>{{dict[i]}}</i></center>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                <p>
-                    <center>
-                        <a class="btn btn-lg btn-success" href="/senti" role="button">Click Here for Senti Analysis on Plot!</a>
-                    </center>
-                </p>
-                <center><h1>Thank You!</h1></center>
-            </div>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="cover">
+      <div class="navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand text-inverse" href="#">
+              <span><img src="http://img.lum.dolimg.com/v1/images/open-uri20150422-20810-1knd2un_0cf74357.jpeg" style="height: 60px; border-radius: 30px; border-style: none; border-width: 1px;"> <strong>Critic</strong>'s Corner</span>
+            </a>
+          </div>
+          <div>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="/"><span class="fa fa-home text-inverse"> Home</span></a>
+              </li>
+              <li>
+                <a href="/logout"><span class="fa fa-sign-out text-inverse"> Logout</span></a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </body>
-</html>
+      </div>
+      <div class="cover-image" style="background-image : url('http://headrush.in/outbound/wp-content/uploads/2015/04/Movie-making4.jpg')"></div>
+      <div class="container" style="margin: 0; top; width: 100%; padding-top: 60px">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-8 text-center">
+            <h1 style="color: #000; background-color: #FFF3; border-radius: 5px">{{ dict['Title'] }}</h1>
+          </div>
+          <div class="col-sm-2">
+            <a class="btn btn-block btn-primary" href="/senti" style="border-radius: 10px; height: max-height;">Sentimenatl Analysis</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{{ dict['Poster'] }}" alt="Poster" class="img-responsive pull-right" style="width: max-width;">
+          </div>
+          <div class="col-md-6 text-inverse">
+            <ul class="list-group">{% if dict['Year'] != "N/A" %}
+              <li class="list-group-item" style="background-color: #000C;">
+                <label>
+                  <strong>Year:</strong>
+                </label>{{ dict['Year'] }}</li>{% endif %} {% if dict['Language'] != "N/A" %}
+              <li class="list-group-item" style="background-color: #000C;">
+                <label>
+                  <strong>Language:</strong>
+                </label>{{ dict['Language'] }}</li>{% endif %} {% if dict['Country'] != "N/A"
+                %}
+                <li class="list-group-item" style="background-color: #000C;">
+                  <label>
+                    <strong>Country:</strong>
+                  </label>{{ dict['Country'] }}</li>{% endif %} {% if dict['Rated'] != "N/A" %}
+                <li class="list-group-item" style="background-color: #000C;">
+                  <label>
+                    <strong>Rated:</strong>
+                  </label>{{ dict['Rated'] }}</li>{% endif %} {% if dict['imdbRating'] != "N/A"
+                  %}
+                  <li class="list-group-item" style="background-color: #000C;">
+                    <label for="imdbRating">
+                      <strong>IMDb:</strong>
+                    </label>{{ dict['imdbRating'] }},
+                    <small>({{ dict['imdbVotes'] }} votes)</small>
+                  </li>{% endif %} {% if dict['Released'] != "N/A" %}
+                  <li class="list-group-item" style="background-color: #000C;">
+                    <label for="Released">
+                      <strong>Released:</strong>
+                    </label>{{ dict['Released'] }}</li>{% endif %} {% if dict['Actors'] != "N/A" %}
+                  <li class="list-group-item" style="background-color: #000C;">
+                    <label for="Actors">
+                      <strong>Actors:</strong>
+                    </label>{{ dict['Actors'] }}</li>{% endif %} {% if dict['Director'] != "N/A" %}
+                    <li class="list-group-item" style="background-color: #000C;">
+                      <label for="Director">
+                        <strong>Director:</strong>
+                      </label>{{ dict['Director'] }}</li>{% endif %} {% if dict['Awards'] != "N/A" %}
+                      <li class="list-group-item" style="background-color: #000C;">
+                        <label for="Awards">
+                          <strong>Awards:</strong>
+                        </label>{{ dict['Awards'] }}</li>{% endif %} {% if dict['Genre'] != "N/A" %}
+                        <li class="list-group-item" style="background-color: #000C;">
+                          <label for="Genre">
+                            <strong>Genre:</strong>
+                          </label>{{ dict['Genre'] }}</li>{% endif %} {% if dict['Plot'] != "N/A" %}
+                          <li class="list-group-item" style="background-color: #000C;">
+                            <label for="Plot">
+                              <strong>Plot:</strong>
+                            </label>{{ dict['Plot'] }}</li>{% endif %}</ul>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>

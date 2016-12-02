@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Python Flask Bucket List App</title>
-        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-        <link href="../static/css/signup.css" rel="stylesheet">
-        <script src="../static/js/jquery-1.11.2.js"></script>
-        <script src="../static/js/signUp.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <h2>The main Page</h2>
-                        <a href = "/">Logout</a>
-                        <form action = "/results" method = "POST">
-                            <p>Movie Title <input type = "text" name = "Title" /></p>
-                            <p><input type = "submit" value = "submit" /></p>
-                        </form>
-                    </ul>
-                </nav>
+                <h2>The main Page</h2>
+                <a href="/">Logout</a>
+                <form action="/results" method="POST">
+                    <p>Movie Title <input type="text" name="Title"></p>
+                    <p><input type="submit" value="submit"></p>
+                </form>
+                {% if found == False %}
+                    <div class="alert alert-danger"><strong>Movie not found!</strong> Please try again</div>
+                {% endif %}
             </div>
         </div>
     </body>
