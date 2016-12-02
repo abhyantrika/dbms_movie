@@ -63,7 +63,12 @@ def sign_up_in():
 
 @app.route('/movie')
 def movie():
-    return render_template('movie.html')
+    return render_template('movie.html', found=True)
+
+
+@app.route('/movieilla')
+def movie_illa():
+    return render_template('movie.html', found=False)
 
 # ___________________________________________________________ #
 """Results from api: Use get_movie.py"""
@@ -75,10 +80,12 @@ def results():
         result = request.form
     try:
         movie_info = get_movie(result['Title'].encode('utf-8'))
+        if movie_info['Response'] == False:
+            return redirect('/movieilla')
         return render_template('results.html', dict=movie_info)
     except:
         flash("Invalid, try again!")
-        return redirect('/movie')
+        return redirect('/movieilla')
 
 
 @app.route('/senti')
@@ -99,7 +106,7 @@ def logout():
     """
     dump_to_json("signin.json", {})
     dump_to_json("signup.json", {})
-    return home()
+    return redirect('/')
     
 # _______________________________________________________ #
 """Database stuff"""
