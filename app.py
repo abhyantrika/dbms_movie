@@ -12,7 +12,6 @@ app.secret_key = KEY
 home_address = "http://%s:%d" % (ADDRESS, PORT)
 USN = ''
 EMAIL = ''
-FOUND = True
 
 # ___________________________________________________ #
 """Home Page """
